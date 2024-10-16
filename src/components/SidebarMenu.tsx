@@ -22,7 +22,7 @@ export default function SidebarMenu({
 }: SidebarMenuProps) {
   return (
     <div
-      className={`flex flex-col h-full w-3/5 md:w-2/6 bg-primary-50 shadow-lg py-14 px-12 gap-9 overflow-auto ${
+      className={`flex flex-col h-full w-3/5 md:w-2/6 lg:w-3/12 bg-primary-50 shadow-lg py-14 px-12 gap-9 overflow-auto ${
         isSubMenu ? "z-40" : "z-50"
       }`}
     >
