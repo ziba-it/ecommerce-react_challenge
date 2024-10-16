@@ -8,7 +8,7 @@ export default function SearchInput() {
         placeholder="Search"
       />
       <div className="flex items-center absolute inset-y-0 right-0 pr-4">
-        <MagnifierIcon />
+        <MagnifierIcon pathClassName="fill-primary-300" />
       </div>
     </div>
   );

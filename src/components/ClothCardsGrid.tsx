@@ -44,7 +44,7 @@ const data = [
 
 export default function ClothCardsGrid() {
   return (
-    <section className="flex flex-col items-center gap-8">
+    <section className="flex flex-col items-center gap-8 px-8 pb-14">
       <div className="grid grid-cols-1 gap-y-7">
         {data.map(({ id, title, description, image, price }) => (
           <ClothCard

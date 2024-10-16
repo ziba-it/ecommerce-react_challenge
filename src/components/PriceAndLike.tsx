@@ -9,7 +9,7 @@ export default function PriceAndLike({ price }: PriceAndLikeProps) {
     <div className="w-full flex justify-between px-16">
       <p className="font-manrope font-normal text-primary-600">€ {price}</p>
       <button>
-        <HeartIcon />
+        <HeartIcon pathClassName="fill-complementary-600" />
       </button>
     </div>
   );
