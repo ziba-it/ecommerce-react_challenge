@@ -1,43 +1,83 @@
-import { CloseIcon } from "./icons";
-import SidebarItem from "./SidebarItem";
-import { MouseEventHandler } from "react";
+import SidebarMenu from "./SidebarMenu";
+import { MouseEventHandler, useState } from "react";
+import { MenuItem } from "../types";
 
 type SidebarProps = {
-  handleOpen: MouseEventHandler<HTMLButtonElement>;
+  handleOpenSidebar: MouseEventHandler<HTMLButtonElement>;
   isSidebarOpen: boolean;
 };
 
-const clothingItems = [
-  "New In",
-  "See all",
-  "Coats",
-  "Beach clothes",
-  "Sweaters & hoodies",
-  "Shirts",
-  "Jeans and pants",
-  "T-shirts",
-  "Shorts",
-  "Underwear",
-  "SALE",
+const menuItems: MenuItem[] = [
+  { title: "New In" },
+  {
+    title: "Clothing",
+    subMenuItems: [
+      { title: "New In" },
+      { title: "See all" },
+      { title: "Coats" },
+      { title: "Beach clothes" },
+      { title: "Sweaters & hoodies" },
+      { title: "Shirts" },
+      { title: "Jeans and pants" },
+      { title: "T-shirts" },
+      { title: "Shorts" },
+      { title: "Underwear" },
+      { title: "SALE" },
+    ],
+  },
+  { title: "Footwear" },
+  { title: "Accessories" },
+  { title: "SALE" },
 ];
 
-export default function Sidebar({ handleOpen, isSidebarOpen }: SidebarProps) {
+export default function Sidebar({
+  handleOpenSidebar,
+  isSidebarOpen,
+}: SidebarProps) {
+  const [expandedMenuItem, setExpandedMenuItem] = useState<MenuItem | null>(
+    null
+  );
+
+  const handleOpenSubMenu = (menuItem: MenuItem) => {
+    setExpandedMenuItem((prev) =>
+      prev?.title === menuItem.title ? null : menuItem
+    );
+  };
+
+  const renderSubMenu = () => {
+    if (
+      expandedMenuItem?.subMenuItems &&
+      expandedMenuItem.subMenuItems.length > 0
+    ) {
+      return (
+        <SidebarMenu
+          handleOpenSidebar={handleOpenSidebar}
+          handleOpenSubMenu={handleOpenSubMenu}
+          menuItems={expandedMenuItem.subMenuItems}
+          showCloseButton={false}
+          isSubMenu={true}
+        />
+      );
+    }
+    return null;
+  };
+
   return (
-    <aside
-      className={`flex flex-col fixed h-full w-3/5 bg-primary-50 shadow-lg z-50 py-14 px-12 gap-9 opacity-0 pointer-events-none overflow-auto transition-all duration-300 ${
+    <div
+      className={`flex fixed w-full h-full opacity-0 md:backdrop-brightness-50 z-30 pointer-events-none transition-all duration-300 ${
         isSidebarOpen ? "opacity-100 pointer-events-auto" : "opacity-0"
       }`}
     >
-      <button onClick={handleOpen}>
-        <CloseIcon className="size-6" pathClassName="fill-complementary-600" />
-      </button>
-      <ul className="text-complementary-600 text-lg font-manrope font-semibold flex flex-col gap-9">
-        <SidebarItem>New In</SidebarItem>
-        <SidebarItem subItems={clothingItems}>Clothing</SidebarItem>
-        <SidebarItem>Footwear</SidebarItem>
-        <SidebarItem>Accessories</SidebarItem>
-        <SidebarItem>SALE</SidebarItem>
-      </ul>
-    </aside>
+      <div className="w-full flex">
+        <SidebarMenu
+          handleOpenSidebar={handleOpenSidebar}
+          handleOpenSubMenu={handleOpenSubMenu}
+          menuItems={menuItems}
+          showCloseButton={true}
+          expandedMenuItem={expandedMenuItem}
+        />
+        {renderSubMenu()}
+      </div>
+    </div>
   );
 }

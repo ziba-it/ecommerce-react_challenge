@@ -16,7 +16,7 @@ export default function ClothCard({
   image,
 }: CardProps) {
   return (
-    <div className="flex flex-col gap-4 items-center px-2 py-7">
+    <div className="flex flex-col gap-4 items-center px-2 py-7 ">
       <div>
         <img src={image} />
       </div>

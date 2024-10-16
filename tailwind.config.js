@@ -15,6 +15,7 @@ const colors = {
     1000: "#2C2C2C",
   },
   complementary: {
+    100: "#FFEDD5",
     600: "#EA580C",
   },
 };

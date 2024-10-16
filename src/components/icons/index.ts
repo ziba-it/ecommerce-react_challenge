@@ -3,7 +3,7 @@ import { MagnifierIcon } from "./MagnifierIcon";
 import { SortVerticalIcon } from "./SortVerticalIcon";
 import { HeartIcon } from "./HeartIcon";
 import { CloseIcon } from "./CloseIcon";
-import { VerticalArrowIcon } from "./VerticalArrowIcon";
+import { ArrowIcon } from "./ArrowIcon";
 
 export {
   MobileMenuIcon,
@@ -11,5 +11,5 @@ export {
   SortVerticalIcon,
   HeartIcon,
   CloseIcon,
-  VerticalArrowIcon,
+  ArrowIcon,
 };

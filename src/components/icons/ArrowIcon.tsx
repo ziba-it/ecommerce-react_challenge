@@ -1,6 +1,6 @@
 import { IconProps } from "../../types";
 
-export function VerticalArrowIcon({ pathClassName, ...props }: IconProps) {
+export function ArrowIcon({ pathClassName, ...props }: IconProps) {
   return (
     <svg
       width="20"

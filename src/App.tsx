@@ -6,14 +6,17 @@ import { useState } from "react";
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  const handleOpen = () => {
+  const handleOpenSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
   return (
     <main className="flex flex-col gap-8 bg-white ">
-      <Sidebar handleOpen={handleOpen} isSidebarOpen={isSidebarOpen} />
-      <SearchHeader handleOpen={handleOpen} />
+      <Sidebar
+        handleOpenSidebar={handleOpenSidebar}
+        isSidebarOpen={isSidebarOpen}
+      />
+      <SearchHeader handleOpenSidebar={handleOpenSidebar} />
       <ClothCardsGrid />
     </main>
   );
