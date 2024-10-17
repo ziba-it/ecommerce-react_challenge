@@ -7,10 +7,10 @@ type SortModalProps = {
 export default function SortModal({ isSortModalOpen }: SortModalProps) {
   return (
     <div
-      className={`absolute right-10 top-24 lg:top-28 bg-white py-5 px-3 font-manrope text-sm lg:text-base z-40 w-44 lg:w-52 shadow-md rounded-md font-medium transition-all duration-300  ${
+      className={`overflow-hidden absolute right-10 top-24 lg:top-28 bg-white py-5 px-3 font-manrope text-sm lg:text-base z-20 w-44 lg:w-52 shadow-md rounded-md font-medium transition-all duration-300  ${
         isSortModalOpen
-          ? "opacity-100 pointer-events-auto"
-          : "opacity-0 pointer-events-none"
+          ? "opacity-100 pointer-events-auto max-h-40"
+          : "opacity-0 pointer-events-none max-h-0"
       }`}
     >
       <ul className="flex flex-col gap-2">

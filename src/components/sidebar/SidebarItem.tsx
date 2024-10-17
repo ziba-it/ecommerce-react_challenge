@@ -22,7 +22,6 @@ export default function SidebarItem({
 
   const handleExpand = () => {
     const screenWidth = window.innerWidth;
-
     if (screenWidth <= 768) {
       setIsSubMenuOpen((prev) => !prev);
     } else if (item.subMenuItems) {
@@ -32,14 +31,10 @@ export default function SidebarItem({
 
   const renderSubMenu = () => {
     const screenWidth = window.innerWidth;
-    if (screenWidth <= 768 && isSubMenuOpen && subMenuItems) {
-      return (
-        <ul className="flex flex-col gap-6 transition-all duration-500">
-          {subMenuItems.map(({ title }) => (
-            <SidebarSubItem key={title}>{title}</SidebarSubItem>
-          ))}
-        </ul>
-      );
+    if (screenWidth <= 768 && subMenuItems) {
+      return subMenuItems.map(({ title }) => (
+        <SidebarSubItem key={title}>{title}</SidebarSubItem>
+      ));
     }
     return null;
   };
@@ -49,12 +44,9 @@ export default function SidebarItem({
     (expandedMenuItem && expandedMenuItem.title === item.title);
 
   return (
-    <li className="flex flex-col gap-6">
+    <li className="flex flex-col gap-6 h-full">
       <div
-        className={`flex items-center justify-between cursor-pointer w-full md:py-2 md:px-2 hover:brightness-110 ${
-          isExpanded &&
-          "md:border-2 md:border-complementary-100 md:rounded-full"
-        }`}
+        className="flex items-center justify-between cursor-pointer w-full md:py-2 md:px-2 hover:brightness-110"
         onClick={handleExpand}
       >
         <a href="#">{children}</a>
@@ -65,7 +57,13 @@ export default function SidebarItem({
           }`}
         />
       </div>
-      {renderSubMenu()}
+      <ul
+        className={`flex flex-col gap-6 transition-all duration-500 overflow-hidden ${
+          isExpanded ? "opacity-100 max-h-[600px]" : "opacity-0 max-h-0"
+        }`}
+      >
+        {renderSubMenu()}
+      </ul>
     </li>
   );
 }

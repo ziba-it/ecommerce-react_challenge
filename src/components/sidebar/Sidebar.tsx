@@ -55,7 +55,7 @@ export default function Sidebar({
           handleOpenSubMenu={handleOpenSubMenu}
           menuItems={expandedMenuItem.subMenuItems}
           showCloseButton={false}
-          isSubMenu={true}
+          isSubMenu
         />
       );
     }
@@ -73,7 +73,7 @@ export default function Sidebar({
           handleOpenSidebar={handleOpenSidebar}
           handleOpenSubMenu={handleOpenSubMenu}
           menuItems={menuItems}
-          showCloseButton={true}
+          showCloseButton
           expandedMenuItem={expandedMenuItem}
         />
         {renderSubMenu()}
