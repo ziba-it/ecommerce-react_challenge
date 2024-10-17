@@ -1,4 +1,4 @@
-import { MagnifierIcon } from "./icons";
+import { MagnifierIcon } from "../icons";
 
 export default function SearchInput() {
   return (

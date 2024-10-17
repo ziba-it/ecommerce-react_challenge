@@ -1,5 +1,5 @@
 import { MouseEventHandler, useState } from "react";
-import { SortVerticalIcon, SidebarIcon } from "./icons";
+import { SidebarIcon, SortVerticalIcon } from "../icons";
 import SearchInput from "./SearchInput";
 import SortModal from "./SortModal";
 import SortSelector from "./SortSelector";

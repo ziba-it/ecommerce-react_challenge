@@ -1,6 +1,6 @@
-import ClothCard from "./ClothCard";
-import Button from "./Button";
-import test from "../assets/test.jpg";
+import ClothingCard from "./ClothingCard";
+import Button from "../ui/Button";
+import test from "../../assets/test.jpg";
 
 const data = [
   {
@@ -42,12 +42,12 @@ const data = [
   },
 ];
 
-export default function ClothCardsGrid() {
+export default function ClothingCardsGrid() {
   return (
     <section className="flex flex-col items-center gap-8 px-8 pb-14">
       <div className="grid grid-cols-1 gap-y-7 md:grid-cols-2 lg:grid-cols-3 px-8 lg:px-16 ">
         {data.map(({ id, title, description, image, price }) => (
-          <ClothCard
+          <ClothingCard
             key={id}
             title={title}
             description={description}

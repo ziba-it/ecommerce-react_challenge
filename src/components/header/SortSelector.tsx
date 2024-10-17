@@ -1,4 +1,4 @@
-import { ArrowIcon } from "./icons";
+import { ArrowIcon } from "../icons";
 import { MouseEventHandler } from "react";
 
 type SortSelectorProps = {

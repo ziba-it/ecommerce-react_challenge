@@ -1,6 +1,6 @@
-import SearchHeader from "./components/SearchHeader";
-import ClothCardsGrid from "./components/ClothCardsGrid";
-import Sidebar from "./components/Sidebar";
+import SearchHeader from "./components/header/SearchHeader";
+import ClothingCardsGrid from "./components/clothingGrid/ClothingCardsGrid";
+import Sidebar from "./components/sidebar/Sidebar";
 import { useState } from "react";
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
         isSidebarOpen={isSidebarOpen}
       />
       <SearchHeader handleOpenSidebar={handleOpenSidebar} />
-      <ClothCardsGrid />
+      <ClothingCardsGrid />
     </main>
   );
 }

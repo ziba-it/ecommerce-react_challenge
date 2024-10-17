@@ -9,7 +9,7 @@ type CardProps = {
   image: string;
 };
 
-export default function ClothCard({
+export default function ClothingCard({
   title,
   description,
   price,

@@ -1,4 +1,4 @@
-import { HeartIcon } from "./icons";
+import { HeartIcon } from "../icons";
 
 type PriceAndLikeProps = {
   price: number;

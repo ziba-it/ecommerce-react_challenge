@@ -1,7 +1,7 @@
 import SidebarItem from "./SidebarItem";
-import { CloseIcon } from "./icons";
+import { CloseIcon } from "../icons";
 import { MouseEventHandler } from "react";
-import { MenuItem } from "../types";
+import { MenuItem } from "../../types";
 
 type SidebarMenuProps = {
   menuItems: MenuItem[];

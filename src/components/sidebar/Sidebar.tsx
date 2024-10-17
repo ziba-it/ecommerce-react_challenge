@@ -1,6 +1,6 @@
 import SidebarMenu from "./SidebarMenu";
 import { MouseEventHandler, useState } from "react";
-import { MenuItem } from "../types";
+import { MenuItem } from "../../types";
 
 type SidebarProps = {
   handleOpenSidebar: MouseEventHandler<HTMLButtonElement>;

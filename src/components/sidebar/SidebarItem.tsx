@@ -1,7 +1,7 @@
-import { ArrowIcon } from "./icons";
+import { ArrowIcon } from "../icons";
 import { ReactNode, useState } from "react";
 import SidebarSubItem from "./SidebarSubItem";
-import { SubMenuItem, MenuItem } from "../types";
+import { SubMenuItem, MenuItem } from "../../types";
 
 type SidebarItemProps = {
   subMenuItems?: SubMenuItem[];
