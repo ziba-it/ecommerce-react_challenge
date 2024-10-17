@@ -14,7 +14,7 @@ export default function SortSelector({
         onClick={handleOpenSortModal}
         className="flex items-center w-full border border-primary-100 shadow-sm rounded-md text-primary-300 bg-primary-50 pl-4"
       >
-        <p>Sort by</p>
+        Sort by
       </button>
       <div className="flex items-center absolute inset-y-0 right-0 pr-4">
         <ArrowIcon pathClassName="fill-primary-300" />

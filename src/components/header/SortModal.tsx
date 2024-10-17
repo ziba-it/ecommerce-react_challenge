@@ -1,17 +1,19 @@
 import { HeartIcon } from "../icons";
+import { cn } from "../../utils/cn";
 
 type SortModalProps = {
-  isSortModalOpen: boolean;
+  isOpen: boolean;
 };
 
-export default function SortModal({ isSortModalOpen }: SortModalProps) {
+export default function SortModal({ isOpen }: SortModalProps) {
   return (
     <div
-      className={`overflow-hidden absolute right-10 top-24 lg:top-28 bg-white py-5 px-3 font-manrope text-sm lg:text-base z-20 w-44 lg:w-52 shadow-md rounded-md font-medium transition-all duration-300  ${
-        isSortModalOpen
-          ? "opacity-100 pointer-events-auto max-h-40"
-          : "opacity-0 pointer-events-none max-h-0"
-      }`}
+      className={cn(
+        "opacity-0 pointer-events-none max-h-0 overflow-hidden absolute right-10 top-24 lg:top-28 bg-white py-5 px-3 font-manrope text-sm lg:text-base z-20 w-44 lg:w-52 shadow-md rounded-md font-medium transition-all duration-300",
+        {
+          "opacity-100 pointer-events-auto max-h-40": isOpen,
+        }
+      )}
     >
       <ul className="flex flex-col gap-2">
         <li className="flex items-center gap-1">

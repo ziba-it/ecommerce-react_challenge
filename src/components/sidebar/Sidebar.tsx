@@ -1,17 +1,18 @@
 import SidebarMenu from "./SidebarMenu";
 import { MouseEventHandler, useState } from "react";
 import { MenuItem } from "../../types";
+import { cn } from "../../utils/cn";
 
 type SidebarProps = {
   handleOpenSidebar: MouseEventHandler<HTMLButtonElement>;
-  isSidebarOpen: boolean;
+  isOpen: boolean;
 };
 
 const menuItems: MenuItem[] = [
   { title: "New In" },
   {
     title: "Clothing",
-    subMenuItems: [
+    children: [
       { title: "New In" },
       { title: "See all" },
       { title: "Coats" },
@@ -30,10 +31,7 @@ const menuItems: MenuItem[] = [
   { title: "SALE" },
 ];
 
-export default function Sidebar({
-  handleOpenSidebar,
-  isSidebarOpen,
-}: SidebarProps) {
+export default function Sidebar({ handleOpenSidebar, isOpen }: SidebarProps) {
   const [expandedMenuItem, setExpandedMenuItem] = useState<MenuItem | null>(
     null
   );
@@ -45,15 +43,12 @@ export default function Sidebar({
   };
 
   const renderSubMenu = () => {
-    if (
-      expandedMenuItem?.subMenuItems &&
-      expandedMenuItem.subMenuItems.length > 0
-    ) {
+    if (expandedMenuItem?.children) {
       return (
         <SidebarMenu
           handleOpenSidebar={handleOpenSidebar}
           handleOpenSubMenu={handleOpenSubMenu}
-          menuItems={expandedMenuItem.subMenuItems}
+          menuItems={expandedMenuItem.children}
           showCloseButton={false}
           isSubMenu
         />
@@ -64,9 +59,12 @@ export default function Sidebar({
 
   return (
     <div
-      className={`flex fixed w-full h-full opacity-0 md:backdrop-brightness-50 z-30 pointer-events-none transition-all duration-300 ${
-        isSidebarOpen ? "opacity-100 pointer-events-auto" : "opacity-0"
-      }`}
+      className={cn(
+        "flex fixed w-full h-full md:backdrop-brightness-50 z-30 pointer-events-none transition-all duration-300 opacity-0",
+        {
+          "opacity-100 pointer-events-auto": isOpen,
+        }
+      )}
     >
       <div className="w-full flex">
         <SidebarMenu

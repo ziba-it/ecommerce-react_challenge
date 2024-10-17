@@ -8,11 +8,11 @@ type SearchHeaderProps = {
   handleOpenSidebar: MouseEventHandler<HTMLButtonElement>;
 };
 
-export default function SearchHeader({ handleOpenSidebar }: SearchHeaderProps) {
+export const SearchHeader = ({ handleOpenSidebar }: SearchHeaderProps) => {
   const [isSortModalOpen, setIsSortModalOpen] = useState(false);
 
   const handleOpenSortModal = () => {
-    setIsSortModalOpen(!isSortModalOpen);
+    setIsSortModalOpen((prev) => !prev);
   };
 
   return (
@@ -39,7 +39,7 @@ export default function SearchHeader({ handleOpenSidebar }: SearchHeaderProps) {
         <SearchInput />
         <SortSelector handleOpenSortModal={handleOpenSortModal} />
       </div>
-      <SortModal isSortModalOpen={isSortModalOpen} />
+      <SortModal isOpen={isSortModalOpen} />
     </div>
   );
-}
+};

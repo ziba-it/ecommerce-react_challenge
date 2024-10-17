@@ -1,10 +1,10 @@
 import { ArrowIcon } from "../icons";
 import { ReactNode, useState } from "react";
 import SidebarSubItem from "./SidebarSubItem";
-import { SubMenuItem, MenuItem } from "../../types";
+import { MenuItem } from "../../types";
+import { cn } from "../../utils/cn";
 
 type SidebarItemProps = {
-  subMenuItems?: SubMenuItem[];
   children: ReactNode;
   handleOpenSubMenu: (menuItem: MenuItem) => void;
   item: MenuItem;
@@ -12,7 +12,6 @@ type SidebarItemProps = {
 };
 
 export default function SidebarItem({
-  subMenuItems,
   handleOpenSubMenu,
   children,
   item,
@@ -24,15 +23,15 @@ export default function SidebarItem({
     const screenWidth = window.innerWidth;
     if (screenWidth <= 768) {
       setIsSubMenuOpen((prev) => !prev);
-    } else if (item.subMenuItems) {
+    } else if (item.children) {
       handleOpenSubMenu(item);
     }
   };
 
   const renderSubMenu = () => {
     const screenWidth = window.innerWidth;
-    if (screenWidth <= 768 && subMenuItems) {
-      return subMenuItems.map(({ title }) => (
+    if (screenWidth <= 768 && item.children) {
+      return item.children.map(({ title }) => (
         <SidebarSubItem key={title}>{title}</SidebarSubItem>
       ));
     }
@@ -52,15 +51,18 @@ export default function SidebarItem({
         <a href="#">{children}</a>
         <ArrowIcon
           pathClassName="fill-complementary-600"
-          className={`size-6 md:-rotate-90 transition-all duration-300 ${
-            isExpanded ? "rotate-180 md:rotate-90" : ""
-          }`}
+          className={cn("size-6 md:-rotate-90 transition-all duration-300", {
+            "rotate-180 md:rotate-90": isExpanded,
+          })}
         />
       </div>
       <ul
-        className={`flex flex-col gap-6 transition-all duration-500 overflow-hidden ${
-          isExpanded ? "opacity-100 max-h-[600px]" : "opacity-0 max-h-0"
-        }`}
+        className={cn(
+          "flex flex-col gap-6 transition-all duration-500 overflow-hidden opacity-0 max-h-0",
+          {
+            "opacity-100 max-h-[600px]": isExpanded,
+          }
+        )}
       >
         {renderSubMenu()}
       </ul>
