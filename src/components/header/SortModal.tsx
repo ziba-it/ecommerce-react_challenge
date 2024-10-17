@@ -5,7 +5,7 @@ type SortModalProps = {
   isOpen: boolean;
 };
 
-export default function SortModal({ isOpen }: SortModalProps) {
+export const SortModal = ({ isOpen }: SortModalProps) => {
   return (
     <div
       className={cn(
@@ -32,4 +32,4 @@ export default function SortModal({ isOpen }: SortModalProps) {
       </ul>
     </div>
   );
-}
+};

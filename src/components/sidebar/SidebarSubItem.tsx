@@ -4,7 +4,7 @@ type SidebarSubItemProps = {
   children: ReactNode;
 };
 
-export default function SidebarSubItem({ children }: SidebarSubItemProps) {
+export const SidebarSubItem = ({ children }: SidebarSubItemProps) => {
   return (
     <li>
       <a className="text-primary-800" href="#">
@@ -12,4 +12,4 @@ export default function SidebarSubItem({ children }: SidebarSubItemProps) {
       </a>
     </li>
   );
-}
+};

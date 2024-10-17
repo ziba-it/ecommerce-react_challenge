@@ -5,9 +5,7 @@ type SortSelectorProps = {
   handleOpenSortModal: MouseEventHandler<HTMLButtonElement>;
 };
 
-export default function SortSelector({
-  handleOpenSortModal,
-}: SortSelectorProps) {
+export const SortSelector = ({ handleOpenSortModal }: SortSelectorProps) => {
   return (
     <div className="relative hidden w-full lg:flex lg:max-w-40">
       <button
@@ -21,4 +19,4 @@ export default function SortSelector({
       </div>
     </div>
   );
-}
+};

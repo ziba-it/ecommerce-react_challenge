@@ -1,6 +1,6 @@
 import { MagnifierIcon } from "../icons";
 
-export default function SearchInput() {
+export const SearchInput = () => {
   return (
     <div className="w-full relative lg:max-w-72">
       <input
@@ -12,4 +12,4 @@ export default function SearchInput() {
       </div>
     </div>
   );
-}
+};

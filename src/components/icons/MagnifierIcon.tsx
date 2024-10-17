@@ -1,6 +1,6 @@
 import { IconProps } from "../../types";
 
-export function MagnifierIcon({ pathClassName, ...props }: IconProps) {
+export const MagnifierIcon = ({ pathClassName, ...props }: IconProps) => {
   return (
     <svg
       width="20"
@@ -18,4 +18,4 @@ export function MagnifierIcon({ pathClassName, ...props }: IconProps) {
       />
     </svg>
   );
-}
+};

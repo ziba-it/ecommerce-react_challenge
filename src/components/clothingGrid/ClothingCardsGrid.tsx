@@ -1,5 +1,5 @@
+import { Button } from "../ui/Button";
 import { ClothingCard } from "./ClothingCard";
-import Button from "../ui/Button";
 import test from "../../assets/test.jpg";
 
 const data = [

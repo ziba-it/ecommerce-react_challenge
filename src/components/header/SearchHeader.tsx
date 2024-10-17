@@ -1,8 +1,8 @@
 import { MouseEventHandler, useState } from "react";
 import { SidebarIcon, SortVerticalIcon } from "../icons";
-import SearchInput from "./SearchInput";
-import SortModal from "./SortModal";
-import SortSelector from "./SortSelector";
+import { SearchInput } from "./SearchInput";
+import { SortModal } from "./SortModal";
+import { SortSelector } from "./SortSelector";
 
 type SearchHeaderProps = {
   handleOpenSidebar: MouseEventHandler<HTMLButtonElement>;

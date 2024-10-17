@@ -1,6 +1,6 @@
 import { IconProps } from "../../types";
 
-export function CloseIcon({ pathClassName, ...props }: IconProps) {
+export const CloseIcon = ({ pathClassName, ...props }: IconProps) => {
   return (
     <svg
       width="20"
@@ -22,4 +22,4 @@ export function CloseIcon({ pathClassName, ...props }: IconProps) {
       />
     </svg>
   );
-}
+};

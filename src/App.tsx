@@ -1,6 +1,6 @@
 import { SearchHeader } from "./components/header/SearchHeader";
 import { ClothingCardsGrid } from "./components/clothingGrid/ClothingCardsGrid";
-import Sidebar from "./components/sidebar/Sidebar";
+import { Sidebar } from "./components/sidebar/Sidebar";
 import { useState } from "react";
 
 function App() {

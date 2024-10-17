@@ -1,6 +1,6 @@
 import { IconProps } from "../../types";
 
-export function ArrowIcon({ pathClassName, ...props }: IconProps) {
+export const ArrowIcon = ({ pathClassName, ...props }: IconProps) => {
   return (
     <svg
       width="20"
@@ -18,4 +18,4 @@ export function ArrowIcon({ pathClassName, ...props }: IconProps) {
       />
     </svg>
   );
-}
+};

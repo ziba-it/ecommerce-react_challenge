@@ -1,4 +1,4 @@
-import SidebarItem from "./SidebarItem";
+import { SidebarItem } from "./SidebarItem";
 import { CloseIcon } from "../icons";
 import { MouseEventHandler } from "react";
 import { MenuItem } from "../../types";
@@ -13,14 +13,14 @@ type SidebarMenuProps = {
   isSubMenu?: boolean;
 };
 
-export default function SidebarMenu({
+export const SidebarMenu = ({
   handleOpenSidebar,
   handleOpenSubMenu,
   menuItems,
   showCloseButton,
   expandedMenuItem,
   isSubMenu,
-}: SidebarMenuProps) {
+}: SidebarMenuProps) => {
   return (
     <div
       className={cn(
@@ -50,4 +50,4 @@ export default function SidebarMenu({
       </ul>
     </div>
   );
-}
+};

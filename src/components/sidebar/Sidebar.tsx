@@ -1,4 +1,4 @@
-import SidebarMenu from "./SidebarMenu";
+import { SidebarMenu } from "./SidebarMenu";
 import { MouseEventHandler, useState } from "react";
 import { MenuItem } from "../../types";
 import { cn } from "../../utils/cn";
@@ -31,7 +31,7 @@ const menuItems: MenuItem[] = [
   { title: "SALE" },
 ];
 
-export default function Sidebar({ handleOpenSidebar, isOpen }: SidebarProps) {
+export const Sidebar = ({ handleOpenSidebar, isOpen }: SidebarProps) => {
   const [expandedMenuItem, setExpandedMenuItem] = useState<MenuItem | null>(
     null
   );
@@ -78,4 +78,4 @@ export default function Sidebar({ handleOpenSidebar, isOpen }: SidebarProps) {
       </div>
     </div>
   );
-}
+};

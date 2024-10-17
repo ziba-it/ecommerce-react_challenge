@@ -1,6 +1,6 @@
 import { ArrowIcon } from "../icons";
 import { ReactNode, useState } from "react";
-import SidebarSubItem from "./SidebarSubItem";
+import { SidebarSubItem } from "./SidebarSubItem";
 import { MenuItem } from "../../types";
 import { cn } from "../../utils/cn";
 
@@ -11,12 +11,12 @@ type SidebarItemProps = {
   expandedMenuItem?: MenuItem | null;
 };
 
-export default function SidebarItem({
+export const SidebarItem = ({
   handleOpenSubMenu,
   children,
   item,
   expandedMenuItem,
-}: SidebarItemProps) {
+}: SidebarItemProps) => {
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
 
   const handleExpand = () => {
@@ -68,4 +68,4 @@ export default function SidebarItem({
       </ul>
     </li>
   );
-}
+};

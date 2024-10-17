@@ -1,6 +1,6 @@
 import { IconProps } from "../../types";
 
-export function HeartIcon({ pathClassName, ...props }: IconProps) {
+export const HeartIcon = ({ pathClassName, ...props }: IconProps) => {
   return (
     <svg
       width="20"
@@ -18,4 +18,4 @@ export function HeartIcon({ pathClassName, ...props }: IconProps) {
       />
     </svg>
   );
-}
+};

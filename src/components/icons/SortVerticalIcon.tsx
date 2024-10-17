@@ -1,6 +1,6 @@
 import { IconProps } from "../../types";
 
-export function SortVerticalIcon({ pathClassName, ...props }: IconProps) {
+export const SortVerticalIcon = ({ pathClassName, ...props }: IconProps) => {
   return (
     <svg
       width="20"
@@ -18,4 +18,4 @@ export function SortVerticalIcon({ pathClassName, ...props }: IconProps) {
       />
     </svg>
   );
-}
+};

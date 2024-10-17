@@ -1,10 +1,10 @@
 import { IconProps } from "../../types";
 
-export function SidebarIcon({
+export const SidebarIcon = ({
   pathClassName,
   rectClassName,
   ...props
-}: IconProps) {
+}: IconProps) => {
   return (
     <svg
       width="44"
@@ -43,4 +43,4 @@ export function SidebarIcon({
       />
     </svg>
   );
-}
+};
