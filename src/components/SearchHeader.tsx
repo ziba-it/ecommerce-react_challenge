@@ -16,7 +16,7 @@ export default function SearchHeader({ handleOpenSidebar }: SearchHeaderProps) {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row items-center gap-8 pt-14 px-8">
+    <div className="flex flex-col lg:flex-row items-center gap-8 pt-14 px-8 relative">
       <div className="w-full flex items-center justify-between gap-2">
         <button onClick={handleOpenSidebar}>
           <SidebarIcon
@@ -33,13 +33,13 @@ export default function SearchHeader({ handleOpenSidebar }: SearchHeaderProps) {
           <button onClick={handleOpenSortModal}>
             <SortVerticalIcon pathClassName="fill-complementary-600" />
           </button>
-          <SortModal isSortModalOpen={isSortModalOpen} />
         </div>
       </div>
       <div className="flex w-full gap-3 px-5 md:px-0  lg:justify-end">
         <SearchInput />
-        <SortSelector />
+        <SortSelector handleOpenSortModal={handleOpenSortModal} />
       </div>
+      <SortModal isSortModalOpen={isSortModalOpen} />
     </div>
   );
 }
