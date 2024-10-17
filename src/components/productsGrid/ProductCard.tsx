@@ -1,12 +1,7 @@
 import { HeartIcon } from "../icons";
-import { Clothing } from "../../types";
+import { Product } from "../../types";
 
-export const ClothingCard = ({
-  title,
-  description,
-  price,
-  images,
-}: Clothing) => {
+export const ProductCard = ({ title, description, price, images }: Product) => {
   return (
     <div className="flex flex-col gap-4 items-center px-2 py-7 ">
       <img src={images[0]} alt={title} className="size-52" />
