@@ -24,13 +24,13 @@ export const SortModal = ({
   return (
     <div
       className={cn(
-        "opacity-0 pointer-events-none max-h-0 overflow-hidden absolute right-8 md:right-10 top-28 md:top-24 lg:top-32 bg-white py-5 px-3 font-manrope text-sm lg:text-base z-20 w-52 lg:w-60 shadow-md rounded-md font-medium transition-all duration-300",
+        "opacity-0 pointer-events-none max-h-0 overflow-hidden absolute right-8 md:right-10 top-28 md:top-24 lg:top-32 bg-white py-2 px-3 font-manrope text-sm lg:text-base z-20 w-60 lg:w-64 shadow-md rounded-md font-medium transition-all duration-300",
         {
-          "opacity-100 pointer-events-auto max-h-60": isOpen,
+          "opacity-100 pointer-events-auto max-h-64": isOpen,
         }
       )}
     >
-      <ul className="flex flex-col">
+      <ul className="flex flex-col gap-2">
         {sortOptions.map(({ icon, label, sortBy, sortOrder }) => (
           <SortModalOption
             icon={icon}
