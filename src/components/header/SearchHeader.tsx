@@ -6,9 +6,17 @@ import { SortSelector } from "./SortSelector";
 
 type SearchHeaderProps = {
   handleOpenSidebar: MouseEventHandler<HTMLButtonElement>;
+  handleChangeSearch: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleChangeSort: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  sortValues: { sortBy: string; sortOrder: string };
 };
 
-export const SearchHeader = ({ handleOpenSidebar }: SearchHeaderProps) => {
+export const SearchHeader = ({
+  handleOpenSidebar,
+  handleChangeSearch,
+  handleChangeSort,
+  sortValues,
+}: SearchHeaderProps) => {
   const [isSortModalOpen, setIsSortModalOpen] = useState(false);
 
   const handleOpenSortModal = () => {
@@ -36,10 +44,14 @@ export const SearchHeader = ({ handleOpenSidebar }: SearchHeaderProps) => {
         </div>
       </div>
       <div className="flex w-full gap-3 px-5 md:px-0  lg:justify-end">
-        <SearchInput />
+        <SearchInput onChange={handleChangeSearch} />
         <SortSelector handleOpenSortModal={handleOpenSortModal} />
       </div>
-      <SortModal isOpen={isSortModalOpen} />
+      <SortModal
+        isOpen={isSortModalOpen}
+        handleChangeSort={handleChangeSort}
+        sortValues={sortValues}
+      />
     </div>
   );
 };

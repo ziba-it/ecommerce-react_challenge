@@ -4,8 +4,18 @@ import { useProducts } from "../../hooks/useProducts";
 import { Product } from "../../types";
 import { LoadingScreen } from "../ui/LoadingScreen";
 
-export const ProductsGrid = () => {
-  const { data, isLoading } = useProducts();
+type ProductsGridProps = {
+  searchTerm: string;
+  sortBy: string;
+  sortOrder: string;
+};
+
+export const ProductsGrid = ({
+  searchTerm,
+  sortBy,
+  sortOrder,
+}: ProductsGridProps) => {
+  const { data, isLoading } = useProducts(searchTerm, sortBy, sortOrder);
 
   if (isLoading) return <LoadingScreen />;
 
