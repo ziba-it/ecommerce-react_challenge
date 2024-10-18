@@ -12,7 +12,12 @@ function App() {
     sortOrder: "",
   });
   const { sortBy, sortOrder } = sortValues;
-  const debouncedSearchTerm = useDebounce(searchTerm);
+  const debouncedSearchTerm = useDebounce(searchTerm, 500);
+  const [isSortModalOpen, setIsSortModalOpen] = useState(false);
+
+  const handleOpenSortModal = () => {
+    setIsSortModalOpen((prev) => !prev);
+  };
 
   const handleOpenSidebar = () => {
     setIsSidebarOpen((prev) => !prev);
@@ -26,6 +31,7 @@ function App() {
   const handleChangeSort = (event: React.MouseEvent<HTMLButtonElement>) => {
     const { value, name } = event.currentTarget;
     setSortValues({ sortBy: name, sortOrder: value });
+    setIsSortModalOpen(false);
   };
 
   return (
@@ -36,6 +42,8 @@ function App() {
         handleChangeSearch={handleChangeSearch}
         handleChangeSort={handleChangeSort}
         sortValues={sortValues}
+        handleOpenSortModal={handleOpenSortModal}
+        isSortModalOpen={isSortModalOpen}
       />
       <ProductsGrid
         searchTerm={debouncedSearchTerm}
