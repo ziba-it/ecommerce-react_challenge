@@ -1,4 +1,4 @@
-import { MouseEventHandler, useState } from "react";
+import { MouseEventHandler } from "react";
 import { SidebarIcon, SortVerticalIcon } from "../icons";
 import { SearchInput } from "./SearchInput";
 import { SortModal } from "./SortModal";
@@ -6,15 +6,21 @@ import { SortSelector } from "./SortSelector";
 
 type SearchHeaderProps = {
   handleOpenSidebar: MouseEventHandler<HTMLButtonElement>;
+  handleOpenSortModal: MouseEventHandler<HTMLButtonElement>;
+  handleChangeSearch: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleChangeSort: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  sortValues: { sortBy: string; sortOrder: string };
+  isSortModalOpen: boolean;
 };
 
-export const SearchHeader = ({ handleOpenSidebar }: SearchHeaderProps) => {
-  const [isSortModalOpen, setIsSortModalOpen] = useState(false);
-
-  const handleOpenSortModal = () => {
-    setIsSortModalOpen((prev) => !prev);
-  };
-
+export const SearchHeader = ({
+  handleOpenSidebar,
+  handleChangeSearch,
+  handleChangeSort,
+  sortValues,
+  handleOpenSortModal,
+  isSortModalOpen,
+}: SearchHeaderProps) => {
   return (
     <div className="flex flex-col lg:flex-row items-center gap-8 pt-14 px-8 relative">
       <div className="w-full flex items-center justify-between gap-2">
@@ -36,10 +42,14 @@ export const SearchHeader = ({ handleOpenSidebar }: SearchHeaderProps) => {
         </div>
       </div>
       <div className="flex w-full gap-3 px-5 md:px-0  lg:justify-end">
-        <SearchInput />
+        <SearchInput onChange={handleChangeSearch} />
         <SortSelector handleOpenSortModal={handleOpenSortModal} />
       </div>
-      <SortModal isOpen={isSortModalOpen} />
+      <SortModal
+        isOpen={isSortModalOpen}
+        handleChangeSort={handleChangeSort}
+        sortValues={sortValues}
+      />
     </div>
   );
 };

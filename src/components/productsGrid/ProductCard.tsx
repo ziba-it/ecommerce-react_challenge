@@ -1,21 +1,10 @@
 import { HeartIcon } from "../icons";
+import { Product } from "../../types";
 
-type CardProps = {
-  title: string;
-  description: string;
-  price: number;
-  image: string;
-};
-
-export const ClothingCard = ({
-  title,
-  description,
-  price,
-  image,
-}: CardProps) => {
+export const ProductCard = ({ title, description, price, images }: Product) => {
   return (
     <div className="flex flex-col gap-4 items-center px-2 py-7 ">
-      <img src={image} />
+      <img src={images[0]} alt={title} className="size-52" />
       <div className="flex flex-col gap-4 text-center px-12">
         <h2 className="font-ubuntu font-normal text-2xl leading-7 text-primary-900">
           {title}

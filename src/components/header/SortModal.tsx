@@ -1,34 +1,47 @@
 import { HeartIcon } from "../icons";
 import { cn } from "../../utils/cn";
+import { SortModalOption } from "./SortModalOption";
 
 type SortModalProps = {
   isOpen: boolean;
+  handleChangeSort: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  sortValues: { sortBy: string; sortOrder: string };
 };
 
-export const SortModal = ({ isOpen }: SortModalProps) => {
+const sortOptions = [
+  { icon: HeartIcon, label: "My favorites", sortBy: "", sortOrder: "" },
+  { label: "Price - from low to high", sortBy: "price", sortOrder: "asc" },
+  { label: "Price - from high to low", sortBy: "price", sortOrder: "desc" },
+  { label: "Alphabetical - from A to Z", sortBy: "title", sortOrder: "asc" },
+  { label: "Alphabetical - from Z to A", sortBy: "title", sortOrder: "desc" },
+];
+
+export const SortModal = ({
+  isOpen,
+  handleChangeSort,
+  sortValues,
+}: SortModalProps) => {
   return (
     <div
       className={cn(
-        "opacity-0 pointer-events-none max-h-0 overflow-hidden absolute right-10 top-24 lg:top-28 bg-white py-5 px-3 font-manrope text-sm lg:text-base z-20 w-44 lg:w-52 shadow-md rounded-md font-medium transition-all duration-300",
+        "opacity-0 pointer-events-none max-h-0 overflow-hidden absolute right-8 md:right-10 top-28 md:top-24 lg:top-32 bg-white py-2 px-3 font-manrope text-sm lg:text-base z-20 w-60 lg:w-64 shadow-md rounded-md font-medium transition-all duration-300",
         {
-          "opacity-100 pointer-events-auto max-h-40": isOpen,
+          "opacity-100 pointer-events-auto max-h-64": isOpen,
         }
       )}
     >
       <ul className="flex flex-col gap-2">
-        <li className="flex items-center gap-1">
-          <HeartIcon className="size-4" pathClassName="fill-black" />
-          <button>My favorites</button>
-        </li>
-        <li>
-          <button>Price - from high to low</button>
-        </li>
-        <li>
-          <button>Price - from low to high</button>
-        </li>
-        <li>
-          <button>Alphabetical order</button>
-        </li>
+        {sortOptions.map(({ icon, label, sortBy, sortOrder }) => (
+          <SortModalOption
+            icon={icon}
+            sortBy={sortBy}
+            sortOrder={sortOrder}
+            onClick={handleChangeSort}
+            sortValues={sortValues}
+          >
+            {label}
+          </SortModalOption>
+        ))}
       </ul>
     </div>
   );
