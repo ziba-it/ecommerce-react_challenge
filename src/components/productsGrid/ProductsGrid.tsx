@@ -5,7 +5,7 @@ import {
   HasNoResultsMessage,
 } from "../ui";
 import { ProductCard } from "./ProductCard";
-import { useProducts } from "../../hooks/useProducts";
+import { useProducts } from "../../hooks";
 import { Product } from "../../types";
 import { useState } from "react";
 

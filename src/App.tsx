@@ -2,7 +2,7 @@ import { SearchHeader } from "./components/header/SearchHeader";
 import { ProductsGrid } from "./components/productsGrid/ProductsGrid";
 import { Sidebar } from "./components/sidebar/Sidebar";
 import { useState } from "react";
-import { useDebounce } from "./hooks/useDebounce";
+import { useDebounce } from "./hooks";
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
