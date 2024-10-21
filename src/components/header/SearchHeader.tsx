@@ -9,7 +9,7 @@ type SearchHeaderProps = {
   handleOpenSortModal: MouseEventHandler<HTMLButtonElement>;
   handleChangeSearch: (event: React.ChangeEvent<HTMLInputElement>) => void;
   handleChangeSort: (event: React.MouseEvent<HTMLButtonElement>) => void;
-  sortValues: { sortBy: string; sortOrder: string };
+  sortValues: { label: string; sortBy: string; sortOrder: string };
   isSortModalOpen: boolean;
 };
 
@@ -43,7 +43,9 @@ export const SearchHeader = ({
       </div>
       <div className="flex w-full gap-3 px-5 md:px-0  lg:justify-end">
         <SearchInput onChange={handleChangeSearch} />
-        <SortSelector handleOpenSortModal={handleOpenSortModal} />
+        <SortSelector handleOpenSortModal={handleOpenSortModal}>
+          {sortValues.label}
+        </SortSelector>
       </div>
       <SortModal
         isOpen={isSortModalOpen}

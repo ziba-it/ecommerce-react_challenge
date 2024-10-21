@@ -8,6 +8,7 @@ function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [sortValues, setSortValues] = useState({
+    label: "Sort by",
     sortBy: "",
     sortOrder: "",
   });
@@ -30,7 +31,22 @@ function App() {
 
   const handleChangeSort = (event: React.MouseEvent<HTMLButtonElement>) => {
     const { value, name } = event.currentTarget;
-    setSortValues({ sortBy: name, sortOrder: value });
+
+    if (name === sortBy) {
+      setSortValues({ label: "Sort by", sortBy: "", sortOrder: "" });
+    } else {
+      let label = "";
+      if (name === "favorites") {
+        label = "Favorites";
+      } else if (name === "price") {
+        label = value === "asc" ? "Price: Low to High" : "Price: High to Low";
+      } else if (name === "title") {
+        label = value === "asc" ? "Title: A to Z" : "Title: Z to A";
+      }
+
+      setSortValues({ label, sortBy: name, sortOrder: value });
+    }
+
     setIsSortModalOpen(false);
   };
 

@@ -38,6 +38,7 @@ export const SortModal = ({
       <ul className="flex flex-col gap-2">
         {sortOptions.map(({ icon, label, sortBy, sortOrder }) => (
           <SortModalOption
+            key={label}
             icon={icon}
             sortBy={sortBy}
             sortOrder={sortOrder}
