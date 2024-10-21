@@ -18,10 +18,7 @@ export const ProductCard = ({
     const productExists = favoritesArray.find(
       (item: Product) => item.id === id
     );
-
-    if (productExists) {
-      setIsFav(true);
-    }
+    setIsFav(!!productExists);
   }, [id]);
 
   const handleFav = () => {
