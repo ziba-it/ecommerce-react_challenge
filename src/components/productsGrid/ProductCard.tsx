@@ -1,7 +1,49 @@
 import { HeartIcon } from "../icons";
 import { Product } from "../../types";
+import { useState, useEffect } from "react";
 
-export const ProductCard = ({ title, description, price, images }: Product) => {
+export const ProductCard = ({
+  title,
+  description,
+  price,
+  images,
+  id,
+}: Product) => {
+  const [isFav, setIsFav] = useState(false);
+
+  useEffect(() => {
+    const favorites = localStorage.getItem("favorites");
+    const favoritesArray = favorites ? JSON.parse(favorites) : [];
+
+    const productExists = favoritesArray.find(
+      (item: Product) => item.id === id
+    );
+
+    if (productExists) {
+      setIsFav(true);
+    }
+  }, [id]);
+
+  const handleFav = () => {
+    const product = { title, description, price, images, id };
+    const favorites = localStorage.getItem("favorites");
+
+    let favoritesArray = favorites ? JSON.parse(favorites) : [];
+
+    const productExists = favoritesArray.find(
+      (item: Product) => item.id === id
+    );
+
+    if (productExists) {
+      favoritesArray = favoritesArray.filter((item: Product) => item.id !== id);
+    } else {
+      favoritesArray.push(product);
+    }
+
+    localStorage.setItem("favorites", JSON.stringify(favoritesArray));
+    setIsFav((prev) => !prev);
+  };
+
   return (
     <div className="flex flex-col gap-4 items-center px-2 py-7 ">
       <img src={images[0]} alt={title} className="size-52" />
@@ -15,8 +57,8 @@ export const ProductCard = ({ title, description, price, images }: Product) => {
       </div>
       <div className="w-full flex justify-between px-16">
         <p className="font-manrope font-normal text-primary-600">€ {price}</p>
-        <button>
-          <HeartIcon pathClassName="fill-complementary-600" />
+        <button onClick={handleFav}>
+          <HeartIcon pathClassName="fill-complementary-600" isFav={isFav} />
         </button>
       </div>
     </div>
