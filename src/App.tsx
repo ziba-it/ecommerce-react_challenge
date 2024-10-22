@@ -1,39 +1,45 @@
-import { SearchHeader } from "./components/header/SearchHeader";
+import { SearchAndSortHeader } from "./components/header/SearchAndSortHeader";
 import { ProductsGrid } from "./components/productsGrid/ProductsGrid";
 import { Sidebar } from "./components/sidebar/Sidebar";
 import { useState } from "react";
 import { useDebounce } from "./hooks";
 
 function App() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [sortValues, setSortValues] = useState({
+  const [state, setState] = useState({
+    isSidebarOpen: false,
+    searchTerm: "",
     label: "Sort by",
     sortBy: "",
     sortOrder: "",
+    isSortModalOpen: false,
   });
-  const { sortBy, sortOrder } = sortValues;
-  const debouncedSearchTerm = useDebounce(searchTerm, 500);
-  const [isSortModalOpen, setIsSortModalOpen] = useState(false);
+
+  const { sortBy, sortOrder, label } = state;
+  const debouncedSearchTerm = useDebounce(state.searchTerm, 500);
 
   const handleOpenSortModal = () => {
-    setIsSortModalOpen((prev) => !prev);
+    setState((prev) => ({ ...prev, isSortModalOpen: !prev.isSortModalOpen }));
   };
 
   const handleOpenSidebar = () => {
-    setIsSidebarOpen((prev) => !prev);
+    setState((prev) => ({ ...prev, isSidebarOpen: !prev.isSidebarOpen }));
   };
 
   const handleChangeSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
-    setSearchTerm(value);
+    setState((prev) => ({ ...prev, searchTerm: value }));
   };
 
   const handleChangeSort = (event: React.MouseEvent<HTMLButtonElement>) => {
     const { value, name } = event.currentTarget;
 
     if (name === sortBy) {
-      setSortValues({ label: "Sort by", sortBy: "", sortOrder: "" });
+      setState((prev) => ({
+        ...prev,
+        label: "Sort by",
+        sortBy: "",
+        sortOrder: "",
+      }));
     } else {
       let label = "";
       if (name === "favorites") {
@@ -44,22 +50,25 @@ function App() {
         label = value === "asc" ? "Title: A to Z" : "Title: Z to A";
       }
 
-      setSortValues({ label, sortBy: name, sortOrder: value });
+      setState((prev) => ({ ...prev, label, sortBy: name, sortOrder: value }));
     }
 
-    setIsSortModalOpen(false);
+    setState((prev) => ({ ...prev, isSortModalOpen: false }));
   };
 
   return (
     <main className="flex flex-col min-h-screen w-full gap-8 bg-white ">
-      <Sidebar handleOpenSidebar={handleOpenSidebar} isOpen={isSidebarOpen} />
-      <SearchHeader
+      <Sidebar
+        handleOpenSidebar={handleOpenSidebar}
+        isOpen={state.isSidebarOpen}
+      />
+      <SearchAndSortHeader
         handleOpenSidebar={handleOpenSidebar}
         handleChangeSearch={handleChangeSearch}
         handleChangeSort={handleChangeSort}
-        sortValues={sortValues}
+        sortValues={{ label, sortBy, sortOrder }}
         handleOpenSortModal={handleOpenSortModal}
-        isSortModalOpen={isSortModalOpen}
+        isSortModalOpen={state.isSortModalOpen}
       />
       <ProductsGrid
         searchTerm={debouncedSearchTerm}

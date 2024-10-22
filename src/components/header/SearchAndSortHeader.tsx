@@ -4,7 +4,7 @@ import { SearchInput } from "./SearchInput";
 import { SortModal } from "./SortModal";
 import { SortSelector } from "./SortSelector";
 
-type SearchHeaderProps = {
+type SearchAndSortHeaderProps = {
   handleOpenSidebar: MouseEventHandler<HTMLButtonElement>;
   handleOpenSortModal: MouseEventHandler<HTMLButtonElement>;
   handleChangeSearch: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -13,14 +13,14 @@ type SearchHeaderProps = {
   isSortModalOpen: boolean;
 };
 
-export const SearchHeader = ({
+export const SearchAndSortHeader = ({
   handleOpenSidebar,
   handleChangeSearch,
   handleChangeSort,
   sortValues,
   handleOpenSortModal,
   isSortModalOpen,
-}: SearchHeaderProps) => {
+}: SearchAndSortHeaderProps) => {
   return (
     <div className="flex flex-col lg:flex-row items-center gap-8 pt-14 px-8 relative">
       <div className="w-full flex items-center justify-between gap-2">
