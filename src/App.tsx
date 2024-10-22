@@ -1,5 +1,5 @@
 import { SearchAndSortHeader } from "./components/header/SearchAndSortHeader";
-import { ProductsGrid } from "./components/productsGrid/ProductsGrid";
+import { ProductsGrid } from "./components/products/ProductsGrid";
 import { Sidebar } from "./components/sidebar/Sidebar";
 import { useState } from "react";
 import { useDebounce } from "./hooks";
@@ -18,24 +18,30 @@ function App() {
   const debouncedSearchTerm = useDebounce(state.searchTerm, 500);
 
   const handleOpenSortModal = () => {
-    setState((prev) => ({ ...prev, isSortModalOpen: !prev.isSortModalOpen }));
+    setState((prevState) => ({
+      ...prevState,
+      isSortModalOpen: !prevState.isSortModalOpen,
+    }));
   };
 
   const handleOpenSidebar = () => {
-    setState((prev) => ({ ...prev, isSidebarOpen: !prev.isSidebarOpen }));
+    setState((prevState) => ({
+      ...prevState,
+      isSidebarOpen: !prevState.isSidebarOpen,
+    }));
   };
 
   const handleChangeSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
-    setState((prev) => ({ ...prev, searchTerm: value }));
+    setState((prevState) => ({ ...prevState, searchTerm: value }));
   };
 
   const handleChangeSort = (event: React.MouseEvent<HTMLButtonElement>) => {
     const { value, name } = event.currentTarget;
 
     if (name === sortBy) {
-      setState((prev) => ({
-        ...prev,
+      setState((prevState) => ({
+        ...prevState,
         label: "Sort by",
         sortBy: "",
         sortOrder: "",
@@ -50,10 +56,15 @@ function App() {
         label = value === "asc" ? "Title: A to Z" : "Title: Z to A";
       }
 
-      setState((prev) => ({ ...prev, label, sortBy: name, sortOrder: value }));
+      setState((prevState) => ({
+        ...prevState,
+        label,
+        sortBy: name,
+        sortOrder: value,
+      }));
     }
 
-    setState((prev) => ({ ...prev, isSortModalOpen: false }));
+    setState((prevState) => ({ ...prevState, isSortModalOpen: false }));
   };
 
   return (

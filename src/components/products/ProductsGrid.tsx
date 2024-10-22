@@ -1,9 +1,4 @@
-import {
-  Button,
-  LoadingMessage,
-  ErrorMessage,
-  HasNoResultsMessage,
-} from "../ui";
+import { Button, StateMessage } from "../ui";
 import { ProductCard } from "./ProductCard";
 import { useProducts } from "../../hooks";
 import { Product } from "../../types";
@@ -22,32 +17,29 @@ export const ProductsGrid = ({
 }: ProductsGridProps) => {
   const [limit, setLimit] = useState(6);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
-  const {
-    data = [],
-    isLoading,
-    isError,
-  } = useProducts(searchTerm, sortBy, sortOrder, limit);
-
-  const hasResults = data.length > 0;
+  const { data, isError, isFetching } = useProducts(
+    searchTerm,
+    sortBy,
+    sortOrder,
+    limit
+  );
 
   const incrementLimit = (increment: number) => {
     setLimit((prev) => prev + increment);
   };
 
-  const handleLoadMore = () => {
+  const handleLoadMore = async () => {
     setIsLoadingMore(true);
-    // I implemented a 500 ms delay to enhance user experience by providing a loading state to the button.
-    // This delay gives users feedback that their action is acknowledged and helps
-    // prevent abrupt UI changes.
-    setTimeout(() => {
-      incrementLimit(6);
-      setIsLoadingMore(false);
-    }, 500);
+    incrementLimit(6);
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    setIsLoadingMore(false);
   };
 
-  if (isLoading) return <LoadingMessage />;
-  if (isError) return <ErrorMessage />;
-  if (!hasResults) return <HasNoResultsMessage />;
+  if (isFetching && !isLoadingMore) {
+    return <StateMessage>Loading...</StateMessage>;
+  }
+  if (isError) return <StateMessage>There was an error...</StateMessage>;
+  if (!data?.length) return <StateMessage>No results found...</StateMessage>;
 
   return (
     <section className="flex flex-col items-center gap-8 px-8 pb-14">
@@ -57,7 +49,7 @@ export const ProductsGrid = ({
         ))}
       </div>
       <Button
-        variant={isLoadingMore ? "loading" : "primary"}
+        variant={isFetching ? "loading" : "primary"}
         onClick={handleLoadMore}
       >
         Load more
