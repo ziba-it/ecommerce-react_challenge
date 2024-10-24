@@ -3,6 +3,7 @@ import { ProductsGrid } from "./components/products/ProductsGrid";
 import { Sidebar } from "./components/sidebar/Sidebar";
 import { useState } from "react";
 import { useDebounce } from "./hooks";
+import { getSortLabel } from "./utils/getSortLabel";
 
 function App() {
   const [state, setState] = useState({
@@ -47,14 +48,7 @@ function App() {
         sortOrder: "",
       }));
     } else {
-      let label = "";
-      if (name === "favorites") {
-        label = "Favorites";
-      } else if (name === "price") {
-        label = value === "asc" ? "Price: Low to High" : "Price: High to Low";
-      } else if (name === "title") {
-        label = value === "asc" ? "Title: A to Z" : "Title: Z to A";
-      }
+      const label = getSortLabel(name, value);
 
       setState((prevState) => ({
         ...prevState,
