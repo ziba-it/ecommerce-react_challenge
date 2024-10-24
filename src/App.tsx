@@ -40,25 +40,25 @@ function App() {
   const handleChangeSort = (event: React.MouseEvent<HTMLButtonElement>) => {
     const { value, name } = event.currentTarget;
 
-    if (name === sortBy) {
+    if (name === sortBy && value === sortOrder) {
       setState((prevState) => ({
         ...prevState,
         label: "Sort by",
         sortBy: "",
         sortOrder: "",
+        isSortModalOpen: false,
       }));
-    } else {
-      const label = getSortLabel(name, value);
-
-      setState((prevState) => ({
-        ...prevState,
-        label,
-        sortBy: name,
-        sortOrder: value,
-      }));
+      return;
     }
+    const label = getSortLabel(name, value);
 
-    setState((prevState) => ({ ...prevState, isSortModalOpen: false }));
+    setState((prevState) => ({
+      ...prevState,
+      label,
+      sortBy: name,
+      sortOrder: value,
+      isSortModalOpen: false,
+    }));
   };
 
   return (
