@@ -1,6 +1,7 @@
 import { HeartIcon } from "../icons";
 import { Product } from "../../types";
 import { useState, useEffect } from "react";
+import { getFavorites } from "../../utils/getFavorites";
 
 export const ProductCard = ({
   title,
@@ -12,32 +13,24 @@ export const ProductCard = ({
   const [isFav, setIsFav] = useState(false);
 
   useEffect(() => {
-    const favorites = localStorage.getItem("favorites");
-    const favoritesArray = favorites ? JSON.parse(favorites) : [];
-
-    const productExists = favoritesArray.find(
-      (item: Product) => item.id === id
-    );
+    const favorites = getFavorites();
+    const productExists = favorites.find((item: Product) => item.id === id);
     setIsFav(!!productExists);
   }, [id]);
 
   const handleFav = () => {
     const product = { title, description, price, images, id };
-    const favorites = localStorage.getItem("favorites");
+    let favorites = getFavorites();
 
-    let favoritesArray = favorites ? JSON.parse(favorites) : [];
-
-    const productExists = favoritesArray.find(
-      (item: Product) => item.id === id
-    );
+    const productExists = favorites.find((item: Product) => item.id === id);
 
     if (productExists) {
-      favoritesArray = favoritesArray.filter((item: Product) => item.id !== id);
+      favorites = favorites.filter((item: Product) => item.id !== id);
     } else {
-      favoritesArray.push(product);
+      favorites.push(product);
     }
 
-    localStorage.setItem("favorites", JSON.stringify(favoritesArray));
+    localStorage.setItem("favorites", JSON.stringify(favorites));
     setIsFav((prev) => !prev);
   };
 
