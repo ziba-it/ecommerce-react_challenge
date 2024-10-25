@@ -14,6 +14,10 @@ export const ProductCard = ({
 
   useEffect(() => {
     const favorites = getFavorites();
+    if (!favorites) {
+      setIsFav(false);
+      return;
+    }
     const productExists = favorites.find((item: Product) => item.id === id);
     setIsFav(!!productExists);
   }, [id]);
