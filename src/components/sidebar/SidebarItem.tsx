@@ -18,9 +18,9 @@ export const SidebarItem = ({
   expandedMenuItem,
 }: SidebarItemProps) => {
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
+  const screenWidth = window.innerWidth;
 
   const handleExpand = () => {
-    const screenWidth = window.innerWidth;
     if (screenWidth <= 768) {
       setIsSubMenuOpen((prev) => !prev);
     } else if (item.children) {
@@ -29,7 +29,6 @@ export const SidebarItem = ({
   };
 
   const renderSubMenu = () => {
-    const screenWidth = window.innerWidth;
     if (screenWidth <= 768 && item.children) {
       return item.children.map(({ title }) => (
         <SidebarSubItem key={title}>{title}</SidebarSubItem>

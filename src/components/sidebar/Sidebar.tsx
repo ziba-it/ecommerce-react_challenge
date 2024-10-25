@@ -42,21 +42,6 @@ export const Sidebar = ({ handleOpenSidebar, isOpen }: SidebarProps) => {
     );
   };
 
-  const renderSubMenu = () => {
-    if (expandedMenuItem?.children) {
-      return (
-        <SidebarMenu
-          handleOpenSidebar={handleOpenSidebar}
-          handleOpenSubMenu={handleOpenSubMenu}
-          menuItems={expandedMenuItem.children}
-          showCloseButton={false}
-          isSubMenu
-        />
-      );
-    }
-    return null;
-  };
-
   return (
     <div
       className={cn(
@@ -74,7 +59,15 @@ export const Sidebar = ({ handleOpenSidebar, isOpen }: SidebarProps) => {
           showCloseButton
           expandedMenuItem={expandedMenuItem}
         />
-        {renderSubMenu()}
+        {expandedMenuItem?.children && (
+          <SidebarMenu
+            handleOpenSidebar={handleOpenSidebar}
+            handleOpenSubMenu={handleOpenSubMenu}
+            menuItems={expandedMenuItem.children}
+            showCloseButton={false}
+            isSubMenu
+          />
+        )}
       </div>
     </div>
   );

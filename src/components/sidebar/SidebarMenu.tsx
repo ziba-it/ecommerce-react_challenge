@@ -32,7 +32,7 @@ export const SidebarMenu = ({
     >
       <button onClick={handleOpenSidebar}>
         <CloseIcon
-          className={cn("size-6", { invisible: !showCloseButton })}
+          className={cn("size-6 invisible", { visible: showCloseButton })}
           pathClassName={"fill-complementary-600"}
         />
       </button>
