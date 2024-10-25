@@ -19,7 +19,6 @@ export const SortModalOption = ({
 }: SortModalOptionProps) => {
   const isActive =
     sortValues.sortBy === sortBy && sortValues.sortOrder === sortOrder;
-
   return (
     <li
       className={cn(

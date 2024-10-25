@@ -9,7 +9,12 @@ type SortModalProps = {
 };
 
 const sortOptions = [
-  { icon: HeartIcon, label: "My favorites", sortBy: "", sortOrder: "" },
+  {
+    icon: HeartIcon,
+    label: "My favorites",
+    sortBy: "favorites",
+    sortOrder: "",
+  },
   { label: "Price - from low to high", sortBy: "price", sortOrder: "asc" },
   { label: "Price - from high to low", sortBy: "price", sortOrder: "desc" },
   { label: "Alphabetical - from A to Z", sortBy: "title", sortOrder: "asc" },
@@ -33,6 +38,7 @@ export const SortModal = ({
       <ul className="flex flex-col gap-2">
         {sortOptions.map(({ icon, label, sortBy, sortOrder }) => (
           <SortModalOption
+            key={label}
             icon={icon}
             sortBy={sortBy}
             sortOrder={sortOrder}
